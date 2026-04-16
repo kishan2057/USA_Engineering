@@ -151,6 +151,11 @@ body {
   width: 100%;
 }
 
+.navbar__links li.active a {
+  color: #5b4fcf;
+  font-weight: 700;
+}
+
 /* ── CTA Button ── */
 .navbar__cta {
   display: flex;

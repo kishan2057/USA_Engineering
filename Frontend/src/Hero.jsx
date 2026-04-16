@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
+
 const heroImg = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&auto=format&fit=crop";
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <div className="hero">
       {/* Left side — text */}
@@ -17,7 +20,7 @@ export default function Hero() {
         <p className="hero__sub">
           Expert MEP Solutions by Licensed Professional Engineers
         </p>
-        <button className="hero__btn">Get a Free Consultation</button>
+        <button className="hero__btn" onClick={() => navigate("/contact")}>Get a Free Consultation</button>
       </div>
 
       {/* Right side — image */}

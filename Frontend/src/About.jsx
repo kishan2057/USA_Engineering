@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./About.css";
 
 function useInView(threshold = 0.15) {
@@ -30,6 +31,7 @@ const PHOTOS = [
 
 export default function About() {
   const [sectionRef, inView] = useInView();
+  const navigate = useNavigate();
 
   return (
     <section className={`about ${inView ? "about--visible" : ""}`} ref={sectionRef}>
@@ -43,7 +45,7 @@ export default function About() {
           code-compliant, energy-efficient, and innovative design solutions
           tailored to meet the needs of architects, developers, and contractors.
         </p>
-        <button className="about__learn-btn">Learn more</button>
+        <button className="about__learn-btn" onClick={() => navigate("/about")}>Learn more</button>
       </div>
 
       {/* ── Right ── */}

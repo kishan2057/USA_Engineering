@@ -1,0 +1,161 @@
+/* ── Wrapper — fixed to viewport, follows scroll ── */
+.ec__wrap {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  transition: left 0.4s cubic-bezier(.22,1,.36,1), top 0.4s cubic-bezier(.22,1,.36,1), transform 0.25s ease;
+  z-index: 9990;
+  pointer-events: all;
+  cursor: none;
+}
+
+/* ── Main jump animation ── */
+.ec__svg {
+  animation: engineerJump 1.8s cubic-bezier(.36,.07,.19,.97) infinite;
+  filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.18));
+  cursor: pointer;
+  transform-origin: bottom center;
+}
+
+.ec__svg:hover {
+  animation: engineerJumpFast 0.6s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+/* ── Shadow shrinks on jump ── */
+.ec__shadow {
+  animation: shadowPulse 1.8s ease-in-out infinite;
+}
+
+/* ── Legs swing while jumping ── */
+.ec__leg-left {
+  transform-origin: 69px 200px;
+  animation: legL 1.8s ease-in-out infinite;
+}
+
+.ec__leg-right {
+  transform-origin: 91px 200px;
+  animation: legR 1.8s ease-in-out infinite;
+}
+
+/* ── Arms swing ── */
+.ec__arm-left {
+  transform-origin: 43px 118px;
+  animation: armL 1.8s ease-in-out infinite;
+}
+
+.ec__arm-right {
+  transform-origin: 117px 118px;
+  animation: armR 1.8s ease-in-out infinite;
+}
+
+/* bubble removed */
+
+/* ── Keyframes ── */
+@keyframes engineerJump {
+  0%   { transform: translateY(0) scaleY(1); }
+  10%  { transform: translateY(0) scaleY(0.92) scaleX(1.08); }
+  30%  { transform: translateY(-40px) scaleY(1.05) scaleX(0.96); }
+  50%  { transform: translateY(-50px) scaleY(1); }
+  70%  { transform: translateY(-20px) scaleY(1.02); }
+  85%  { transform: translateY(0) scaleY(0.9) scaleX(1.1); }
+  100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes engineerJumpFast {
+  0%   { transform: translateY(0) scaleY(1); }
+  20%  { transform: translateY(-55px) scaleY(1.05); }
+  50%  { transform: translateY(-60px) scaleY(1); }
+  80%  { transform: translateY(0) scaleY(0.88) scaleX(1.12); }
+  100% { transform: translateY(0) scaleY(1); }
+}
+
+@keyframes shadowPulse {
+  0%, 100% { transform: scaleX(1); opacity: 0.5; }
+  50%       { transform: scaleX(0.5); opacity: 0.15; }
+}
+
+@keyframes legL {
+  0%, 100% { transform: rotate(0deg); }
+  30%       { transform: rotate(-20deg); }
+  60%       { transform: rotate(15deg); }
+}
+
+@keyframes legR {
+  0%, 100% { transform: rotate(0deg); }
+  30%       { transform: rotate(20deg); }
+  60%       { transform: rotate(-15deg); }
+}
+
+@keyframes armL {
+  0%, 100% { transform: rotate(0deg); }
+  30%       { transform: rotate(20deg); }
+  60%       { transform: rotate(-10deg); }
+}
+
+@keyframes armR {
+  0%, 100% { transform: rotate(0deg); }
+  30%       { transform: rotate(-20deg); }
+  60%       { transform: rotate(10deg); }
+}
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── Idle bubble — fixed, always readable ── */
+.ec__idle-bubble {
+  position: fixed;
+  background: linear-gradient(135deg, #5b4fcf, #7c6fe0);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(91,79,207,0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 9999;
+  animation: idleBubbleIn 0.4s cubic-bezier(.22,1,.36,1) both, idleFloat 1.5s ease-in-out infinite 0.4s;
+  transition: box-shadow 0.2s ease;
+}
+
+.ec__idle-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #7c6fe0;
+}
+
+.ec__idle-bubble:hover {
+  box-shadow: 0 10px 32px rgba(91,79,207,0.6);
+}
+
+.ec__bubble-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.ec__bubble-number {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.92;
+  letter-spacing: 0.5px;
+}
+
+@keyframes idleBubbleIn {
+  from { opacity: 0; transform: scale(0.7) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes idleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}

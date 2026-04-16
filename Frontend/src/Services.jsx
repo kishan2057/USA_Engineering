@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Services.css";
 
 function useInView(threshold = 0.1) {
@@ -50,6 +51,7 @@ const SERVICES = [
 
 export default function Services() {
   const [sectionRef, inView] = useInView();
+  const navigate = useNavigate();
 
   return (
     <section className={`services ${inView ? "services--visible" : ""}`} ref={sectionRef}>
@@ -71,7 +73,7 @@ export default function Services() {
             </div>
             <h3 className="services__card-title">{s.title}</h3>
             <p className="services__card-desc">{s.desc}</p>
-            <button className="services__btn">Read More</button>
+            <button className="services__btn" onClick={() => navigate("/services")}>Read More</button>
           </div>
         ))}
       </div>

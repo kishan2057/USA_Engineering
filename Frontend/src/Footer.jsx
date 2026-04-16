@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function useInView(threshold = 0.1) {
@@ -15,8 +16,21 @@ function useInView(threshold = 0.1) {
   return [ref, inView];
 }
 
-const SERVICES = ["Electrical","Fire Alarm and Safety","Fire Protection","Mechanical","Plumbing","Other Services"];
-const QUICK    = ["Services","Expertise","About","Contact"];
+const SERVICES_LINKS = [
+  { label: "Electrical",          to: "/services" },
+  { label: "Fire Alarm and Safety", to: "/services" },
+  { label: "Fire Protection",     to: "/services" },
+  { label: "Mechanical",          to: "/services" },
+  { label: "Plumbing",            to: "/services" },
+  { label: "Other Services",      to: "/services" },
+];
+
+const QUICK = [
+  { label: "Services",  to: "/services" },
+  { label: "Expertise", to: "/expertise" },
+  { label: "About",     to: "/about" },
+  { label: "Contact",   to: "/contact" },
+];
 
 export default function Footer() {
   const [ref, inView] = useInView();
@@ -64,8 +78,8 @@ export default function Footer() {
         <div className="footer__col" style={{ "--i": 1 }}>
           <h4 className="footer__col-title">Services</h4>
           <ul className="footer__links">
-            {SERVICES.map((s, i) => (
-              <li key={i}><a href="#">{s}</a></li>
+            {SERVICES_LINKS.map((s, i) => (
+              <li key={i}><Link to={s.to}>{s.label}</Link></li>
             ))}
           </ul>
         </div>
@@ -75,7 +89,7 @@ export default function Footer() {
           <h4 className="footer__col-title">Quick Links</h4>
           <ul className="footer__links">
             {QUICK.map((q, i) => (
-              <li key={i}><a href="#">{q}</a></li>
+              <li key={i}><Link to={q.to}>{q.label}</Link></li>
             ))}
           </ul>
         </div>

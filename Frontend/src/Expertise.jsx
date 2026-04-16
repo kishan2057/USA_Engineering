@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Expertise.css";
 
 function useInView(threshold = 0.1) {
@@ -26,6 +27,7 @@ const INDUSTRIES = [
 
 export default function Expertise() {
   const [sectionRef, inView] = useInView();
+  const navigate = useNavigate();
 
   return (
     <section className={`expertise ${inView ? "expertise--visible" : ""}`} ref={sectionRef}>
@@ -43,7 +45,7 @@ export default function Expertise() {
       {/* Grid — 3 columns, 2 rows */}
       <div className="expertise__grid">
         {INDUSTRIES.map((item, i) => (
-          <div className="expertise__card" key={i} style={{ "--i": i }}>
+          <div className="expertise__card" key={i} style={{ "--i": i }} onClick={() => navigate("/expertise")}>
             <img src={item.img} alt={item.label} />
             <div className="expertise__overlay" />
             <span className="expertise__label">{item.label}</span>

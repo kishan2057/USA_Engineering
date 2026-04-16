@@ -133,3 +133,30 @@
   .hero__btn { align-self: center; }
   .hero__right img { max-width: 100%; }
 }
+
+/* ── Cartoon overlay on hero image ── */
+.hero__right-inner {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 900px;
+}
+
+.hero__right-inner img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(91,79,207,0.2);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.hero__right-inner img:hover {
+  transform: scale(1.02);
+}
+
+.hero__cartoon {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}

@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
-const NAV_LINKS = ["Services", "Expertise", "About", "Blog", "Contact"];
+const NAV_LINKS = [
+  { label: "Services",  to: "/services" },
+  { label: "Expertise", to: "/expertise" },
+  { label: "About",     to: "/about" },
+  { label: "Blog",      to: "/blog" },
+  { label: "Contact",   to: "/contact" },
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -16,8 +23,7 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
-      {/* Logo */}
-      <div className="navbar__logo">
+      <Link to="/" className="navbar__logo" style={{ textDecoration: "none" }}>
         <div className="navbar__logo-icon">
           <span>YE</span>
           <div className="navbar__logo-ring" />
@@ -26,24 +32,19 @@ export default function Navbar() {
           <span className="navbar__logo-name">YADAVIAN</span>
           <span className="navbar__logo-sub">ENGINEERING</span>
         </div>
-      </div>
+      </Link>
 
-      {/* Nav Links */}
       <ul className={`navbar__links ${menuOpen ? "navbar__links--open" : ""}`}>
         {NAV_LINKS.map((link) => (
-          <li key={link} className={activeLink === link ? "active" : ""}>
-            <a
-              href={`#${link.toLowerCase()}`}
-              onClick={() => setActiveLink(link)}
-            >
-              {link}
+          <li key={link.label} className={location.pathname === link.to ? "active" : ""}>
+            <Link to={link.to} onClick={() => setMenuOpen(false)}>
+              {link.label}
               <span className="navbar__link-underline" />
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
 
-      {/* Call Us */}
       <div className="navbar__cta">
         <div className="navbar__cta-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18" height="18">
@@ -57,7 +58,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Hamburger */}
       <button
         className={`navbar__hamburger ${menuOpen ? "navbar__hamburger--open" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
