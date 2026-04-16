@@ -1,0 +1,132 @@
+.expertise {
+  background: #fff;
+  padding: 30px 80px 100px;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.expertise__header {
+  text-align: center;
+  margin-bottom: 52px;
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.expertise--visible .expertise__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expertise__tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #5b4fcf;
+  margin-bottom: 10px;
+}
+
+.expertise__title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 14px;
+}
+
+.expertise__sub {
+  font-size: 14px;
+  color: #888;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Grid ── */
+.expertise__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 240px);
+  gap: 20px;
+}
+
+/* ── Card ── */
+.expertise__card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.92) translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.22,1,.36,1);
+  transition-delay: calc(0.1s + var(--i) * 0.1s);
+}
+
+.expertise--visible .expertise__card {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.expertise__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.expertise__card:hover img {
+  transform: scale(1.08);
+}
+
+/* dark gradient overlay */
+.expertise__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
+  transition: background 0.4s ease;
+}
+
+.expertise__card:hover .expertise__overlay {
+  background: linear-gradient(to top, rgba(91,79,207,0.55) 0%, transparent 60%);
+}
+
+/* pill label */
+.expertise__label {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(91, 79, 207, 0.88);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 30px;
+  backdrop-filter: blur(6px);
+  transform: translateY(-6px);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+
+.expertise--visible .expertise__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expertise__card:hover .expertise__label {
+  background: rgba(91, 79, 207, 1);
+  transform: scale(1.05);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .expertise__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .expertise__card { height: 200px; }
+}
+
+@media (max-width: 600px) {
+  .expertise { padding: 60px 24px; }
+  .expertise__grid { grid-template-columns: 1fr; }
+  .expertise__title { font-size: 30px; }
+}
